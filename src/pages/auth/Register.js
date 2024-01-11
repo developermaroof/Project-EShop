@@ -1,13 +1,12 @@
-import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 import "./auth.scss";
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import registerImg from "../../assets/register.png";
-import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../../firebase/config";
+import { auth } from "../../firebase/config";
 import Loader from "../../components/loader/Loader";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -20,9 +19,10 @@ const Register = () => {
   const registerUser = (e) => {
     e.preventDefault();
     if (password !== cPassword) {
-      toast.error("Password do not match!");
+      toast.error("Passwords do not match.");
     }
     setIsLoading(true);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -33,22 +33,21 @@ const Register = () => {
       })
       .catch((error) => {
         toast.error(error.message);
-        console.log(error);
         setIsLoading(false);
       });
   };
 
   return (
     <>
-      <ToastContainer />
       {isLoading && <Loader />}
       <section className="container auth">
         <Card>
           <div className="form">
             <h2>Register</h2>
+
             <form onSubmit={registerUser}>
               <input
-                type="email"
+                type="text"
                 placeholder="Email"
                 required
                 value={email}
