@@ -4,7 +4,11 @@ import loginImg from "../../assets/login.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import Card from "../../components/card/Card";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
@@ -25,11 +29,23 @@ const Login = () => {
         // const user = userCredential.user;
         // console.log(user);
         setIsLoading(false);
-        toast.success("Login Successful...");
+        toast.success("Successfully LoggedIn!");
         navigate("/");
       })
       .catch((error) => {
         setIsLoading(false);
+        toast.error(error.message);
+      });
+  };
+
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        toast.success("Successfully LoggedIn!");
+        navigate("/");
+      })
+      .catch((error) => {
         toast.error(error.message);
       });
   };
@@ -68,7 +84,10 @@ const Login = () => {
               </div>
               <p> -- or -- </p>
             </form>
-            <button className="--btn --btn-danger --btn-block">
+            <button
+              className="--btn --btn-danger --btn-block"
+              onClick={signInWithGoogle}
+            >
               <FaGoogle color="#fff" />
               -Login With Google
             </button>

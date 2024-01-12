@@ -42,7 +42,7 @@ const Header = () => {
   const logoutUser = () => {
     signOut(auth)
       .then(() => {
-        toast.success("Logout successfully.");
+        toast.success("Successfully LoggedOut!");
         navigate("/");
       })
       .catch((error) => {

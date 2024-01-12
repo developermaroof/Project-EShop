@@ -1,10 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import "./auth.scss";
 import resetImg from "../../assets/forgot.png";
 import { Link } from "react-router-dom";
 import Card from "../../components/card/Card";
+import { toast } from "react-toastify";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase/config";
 
 const Reset = () => {
+  const [email, setEmail] = useState("");
+
+  const resetPassword = (e) => {
+    e.preventDefault();
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {})
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   return (
     <section className="container auth">
       <div className="img">
@@ -13,10 +28,16 @@ const Reset = () => {
       <Card>
         <div className="form">
           <h2>Reset Password</h2>
-          <form>
-            <input type="email" placeholder="Email" required />
+          <form onSubmit={resetPassword}>
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-            <button className="--btn --btn-primary --btn-block">
+            <button type="submit" className="--btn --btn-primary --btn-block">
               Reset Password
             </button>
             <div className="links">

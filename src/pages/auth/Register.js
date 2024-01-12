@@ -19,7 +19,7 @@ const Register = () => {
   const registerUser = (e) => {
     e.preventDefault();
     if (password !== cPassword) {
-      toast.error("Passwords do not match.");
+      toast.error("Passwords do not match!");
     }
     setIsLoading(true);
 
@@ -28,7 +28,7 @@ const Register = () => {
         const user = userCredential.user;
         console.log(user);
         setIsLoading(false);
-        toast.success("Registration Successful...");
+        toast.success("Successfully Registered!");
         navigate("/login");
       })
       .catch((error) => {
