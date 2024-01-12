@@ -22,8 +22,8 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+        // const user = userCredential.user;
+        // console.log(user);
         setIsLoading(false);
         toast.success("Login Successful...");
         navigate("/");
@@ -36,7 +36,6 @@ const Login = () => {
 
   return (
     <>
-      {" "}
       {isLoading && <Loader />}
       <section className="container auth">
         <div className="img">
