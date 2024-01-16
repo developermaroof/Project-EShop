@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { sliderData } from "./slider-data";
 import "./Slider.scss";
@@ -6,7 +6,7 @@ import "./Slider.scss";
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
-  console.log(slideLength);
+  //   console.log(slideLength);
 
   const autoScroll = true;
   let slideInterval;
@@ -15,6 +15,7 @@ const Slider = () => {
   const nextSlide = () => {
     setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
   };
+
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
   };
@@ -23,15 +24,15 @@ const Slider = () => {
     setCurrentSlide(0);
   }, []);
 
-  // function auto() {
-  //   slideInterval = setInterval(nextSlide, intervalTime);
-  // }
+  //   const auto = () => {
+  //     slideInterval = setInterval(nextSlide, intervalTime);
+  //   };
 
   useEffect(() => {
     if (autoScroll) {
-      function auto() {
+      const auto = () => {
         slideInterval = setInterval(nextSlide, intervalTime);
-      }
+      };
       auto();
     }
     return () => clearInterval(slideInterval);
@@ -51,7 +52,7 @@ const Slider = () => {
           >
             {index === currentSlide && (
               <>
-                <img src={image} alt="img" />
+                <img src={image} alt="slide" />
                 <div className="content">
                   <h2>{heading}</h2>
                   <p>{desc}</p>
