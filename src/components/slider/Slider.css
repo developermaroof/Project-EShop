@@ -23,7 +23,6 @@
     height: 100%;
   }
 }
-
 .slide img {
   height: 100%;
 }
@@ -42,9 +41,9 @@
   flex-direction: column;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.4);
-  h2 {
-    font-size: 4.5rem;
-  }
+}
+.content h2 {
+  font-size: 4.5rem;
 }
 
 @keyframes slide-up {
@@ -57,13 +56,11 @@
     top: 17rem;
   }
 }
-
 @media screen and (max-width: 600px) {
   .content {
     width: 80%;
   }
 }
-
 .content > * {
   color: #fff;
   margin-bottom: 1rem;
@@ -77,6 +74,7 @@
 .current .content {
   opacity: 1;
 }
+
 .arrow {
   border: 2px solid orangered;
   border-radius: 50%;
@@ -99,6 +97,7 @@
   right: 1.5rem;
   color: orangered;
 }
+
 .prev {
   left: 1.5rem;
   color: orangered;
@@ -108,4 +107,4 @@ hr {
   height: 2px;
   background: #fff;
   width: 50%;
-}
+}/*# sourceMappingURL=Slider.css.map */

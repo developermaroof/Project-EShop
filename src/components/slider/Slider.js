@@ -24,7 +24,9 @@ const Slider = () => {
   }, []);
 
   const auto = useCallback(() => {
-    slideIntervalRef.current = setInterval(nextSlide, intervalTime);
+    slideIntervalRef.current = setInterval(() => {
+      nextSlide();
+    }, intervalTime);
   }, [nextSlide, intervalTime]);
 
   useEffect(() => {
